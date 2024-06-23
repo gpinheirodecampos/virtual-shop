@@ -11,7 +11,7 @@ public class CategoryService(IUnitOfWork unitOfWork, IMapper mapper) : ICategory
 {
     public async Task<IEnumerable<CategoryDTO>> Get()
     {
-        var categories = await unitOfWork.CategoryRepository.Get().ToListAsync();
+        var categories = await unitOfWork.CategoryRepository.Get(c => c.Products).ToListAsync();
         return mapper.Map<IEnumerable<CategoryDTO>>(categories);
     }
 
